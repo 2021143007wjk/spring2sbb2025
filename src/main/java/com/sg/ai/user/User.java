@@ -1,4 +1,4 @@
-package com.sg.ai.domain;
+package com.sg.ai.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
