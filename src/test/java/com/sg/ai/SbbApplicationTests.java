@@ -13,6 +13,7 @@ import com.sg.ai.answer.Answer;
 import com.sg.ai.answer.AnswerRepository;
 import com.sg.ai.question.Question;
 import com.sg.ai.question.QuestionRepository;
+import com.sg.ai.question.QuestionService;
 
 @SpringBootTest
 class SbbApplicationTests {
@@ -42,7 +43,7 @@ class SbbApplicationTests {
 	@Autowired
 	AnswerRepository answerRepositoy;
 
-	@Test
+//	@Test
 	void testJpaa() {
 		Optional<Question> oq = this.questionRepositoy.findById(1);
 		assertTrue(oq.isPresent());
@@ -54,5 +55,17 @@ class SbbApplicationTests {
 		a.setCreateDate(LocalDateTime.now());
 		this.answerRepositoy.save(a);
 		
+	}
+//	페이지 기능 구현 테스용 더미300개 
+	@Autowired
+	private QuestionService questionService;
+	
+//	@Test
+	void testPage() {
+		for(int i=1; i<=300; i++) {
+			String subject = String.format("테스트:[%03d]", i);
+			String content = "0609 수업";
+			this.questionService.create(subject, content);
+		}
 	}
 }

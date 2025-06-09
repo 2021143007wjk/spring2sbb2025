@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sg.ai.DataNotFoundException;
@@ -17,8 +20,15 @@ public class QuestionService {
 	
 	private final QuestionRepository questionRepository;
 	
-	public List<Question> getList() {
-		return this.questionRepository.findAll();
+//	페이지 적용 이전
+//	public List<Question> getList() {
+//		return this.questionRepository.findAll();
+//	}
+	
+//	페이지 적용 2025 6 9
+	public Page<Question> getList(int page) {
+		Pageable pageable = PageRequest.of(page, 10);
+		return this.questionRepository.findAll(pageable);
 	}
 	
 	public Question getQuestion(Integer id) {
